@@ -1,7 +1,6 @@
 package com.zipcodewilmington.bakery.Models;
 
 public class Muffin {
-
     private Long id;
 
     private String flavor;

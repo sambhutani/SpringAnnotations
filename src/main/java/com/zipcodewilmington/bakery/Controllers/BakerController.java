@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 public class BakerController {
-
     private BakerRepository bakerRepository;
 
     public ResponseEntity<Iterable<Baker>> index() {
@@ -14,7 +13,7 @@ public class BakerController {
     }
 
     public ResponseEntity<Baker> show(Long id) {
-        return new ResponseEntity<>(this.bakerRepository.findOne(id), HttpStatus.OK);
+        return new ResponseEntity<>(this.bakerRepository.findById(id).get(), HttpStatus.OK);
     }
 
     public ResponseEntity<Baker> create(Baker baker) {
@@ -22,7 +21,7 @@ public class BakerController {
     }
 
     public ResponseEntity<Baker> update(Long id, Baker baker) {
-        Baker foundBaker = bakerRepository.findOne(id);
+        Baker foundBaker = bakerRepository.findById(id).get();
 
         foundBaker.setName(baker.getName());
         foundBaker.setSpecialty(baker.getSpecialty());
@@ -31,7 +30,7 @@ public class BakerController {
     }
 
     public ResponseEntity<Boolean> destroy(Long id) {
-        this.bakerRepository.delete(id);
+        this.bakerRepository.findById(id).get();
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 }

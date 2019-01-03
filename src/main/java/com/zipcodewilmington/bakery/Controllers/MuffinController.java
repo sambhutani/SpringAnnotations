@@ -14,7 +14,7 @@ public class MuffinController {
     }
 
     public ResponseEntity<Muffin> show(Long id) {
-        return new ResponseEntity<>(this.muffinRepository.findOne(id), HttpStatus.OK);
+        return new ResponseEntity<>(this.muffinRepository.findById(id).get(), HttpStatus.OK);
     }
 
     public ResponseEntity<Muffin> create(Muffin muffin) {
@@ -22,14 +22,14 @@ public class MuffinController {
     }
 
     public ResponseEntity<Muffin> update(Long id, Muffin muffin) {
-        Muffin foundMuffin = muffinRepository.findOne(id);
+        Muffin foundMuffin = muffinRepository.findById(id).get();
         foundMuffin.setFlavor(muffin.getFlavor());
 
         return new ResponseEntity<>(this.muffinRepository.save(foundMuffin), HttpStatus.OK);
     }
 
     public ResponseEntity<Boolean> destroy(Long id) {
-        this.muffinRepository.delete(id);
+        this.muffinRepository.deleteById(id);
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
