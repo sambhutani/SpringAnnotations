@@ -1,9 +1,20 @@
 package com.zipcodewilmington.bakery.Models;
 
+import javax.persistence.*;
+
+@Entity
 public class Muffin {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "MUFFIN_ID")
     private Long id;
 
+    @Column(name = "MUFFIN_FLAVOR")
     private String flavor;
+
+    public Muffin() {
+    }
 
     public Muffin(String flavor) {
         this.flavor = flavor;
